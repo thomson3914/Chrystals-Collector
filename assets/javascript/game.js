@@ -8,15 +8,15 @@ var total = 0;
 var resetAndStart = function () {
 
     // this empties the crystals
-    $(".crystals").empty(); 
+    $(".crystals").empty();
 
     // images for crystals
     var images = [
-        './assets/images/crystal1.jpg', 
-        './assets/images/crystal2.jpg', 
-        './assets/images/crystal3.jpg', 
+        './assets/images/crystal1.jpg',
+        './assets/images/crystal2.jpg',
+        './assets/images/crystal3.jpg',
         './assets/images/crystal4.jpg'];
-    
+
     // generates new random target number
     targetNum = Math.floor(Math.random() * 80) + 40;
 
@@ -24,23 +24,23 @@ var resetAndStart = function () {
     $("#result").html(targetNum);
 
     // for loop to create the 4 crystals
-    for(var i = 0; i < 4; i++){
+    for (var i = 0; i < 4; i++) {
 
         // generates the crystals random number
         var random = Math.floor(Math.random() * 11) + 1;
-    
+
         // creates the div for ramdom number and put it to this attribute
         var crystal = $("<div>");
-            crystal.attr({
-                "class": 'crystal', 
-                "data-random": random            
-            });
-			crystal.css({
-				"background-image":"url('" + images[i] + "')",
-				"background-size":"cover"
+        crystal.attr({
+            "class": 'crystal',
+            "data-random": random
+        });
+        crystal.css({
+            "background-image": "url('" + images[i] + "')",
+            "background-size": "cover"
 
-            });
-            
+        });
+
         // the crystal added to the dom
         $(".crystals").append(crystal);
     }
@@ -59,34 +59,34 @@ resetAndStart();
 // Event Delegation
 $(document).on('click', ".crystal", function () {
 
-   var num = parseInt($(this).attr('data-random'));
+    var num = parseInt($(this).attr('data-random'));
 
-   total += num;
+    total += num;
 
-   $("#total").html(total);
+    $("#total").html(total);
 
-   console.log(total);
+    console.log(total);
 
-    // if you lose = resetAndStrart
-   if(total > targetNum) {
+    // if you lose = resetAndStart
+    if (total > targetNum) {
         loss++;
 
         $("#lost").html(loss);
 
         total = 0;
 
-        resetAndStart(); 
-   }
+        resetAndStart();
+    }
 
-    // if you win = resetAndStrart
-   else if(total === targetNum){
-       win++;
+    // if you win = resetAndStart
+    else if (total === targetNum) {
+        win++;
 
-       $("#win").html(win);
+        $("#win").html(win);
 
-       total = 0;
+        total = 0;
 
-       resetAndStart(); 
-   }
+        resetAndStart();
+    }
 
 });
